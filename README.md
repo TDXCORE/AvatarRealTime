@@ -39,7 +39,17 @@ Si encuentras errores durante el despliegue:
 1. Verifica los logs de construcción en Vercel
 2. Asegúrate de que todas las variables de entorno estén configuradas correctamente
 3. Verifica que el archivo `vercel.json` esté en la raíz del proyecto
-4. Asegúrate de que el archivo `backend/vercel_app.py` exista y esté correctamente configurado
+4. Asegúrate de que los archivos `__init__.py` existan en todos los directorios del proyecto
+5. Comprueba que las rutas de importación en `backend/index.py` sean correctas
+
+### 4. Cambios Recientes para Solucionar Errores de Despliegue
+
+Se han realizado los siguientes cambios para solucionar errores de despliegue en Vercel:
+
+1. Corregido las rutas de importación en `backend/index.py` y `backend/vercel_app.py`
+2. Añadido archivos `__init__.py` en todos los directorios para que Python los reconozca como paquetes
+3. Simplificado `vercel.json` para usar solo un punto de entrada
+4. Ajustado `requirements.txt` para evitar dependencias problemáticas en Vercel
 
 ## Desarrollo Local
 
@@ -53,24 +63,37 @@ Para ejecutar el proyecto localmente:
 
 ```
 backend/
+├── __init__.py                    # Archivo para reconocer el directorio como paquete
+├── index.py                       # Punto de entrada para Vercel
+├── vercel_app.py                  # Punto de entrada alternativo
 ├── app/
+│   ├── __init__.py                # Archivo para reconocer el directorio como paquete
 │   ├── api/
+│   │   ├── __init__.py            # Archivo para reconocer el directorio como paquete
 │   │   ├── v1/
-│   │   │   ├── agents.py            # Agentic endpoints
-│   │   │   ├── avatar.py            # Avatar management
-│   │   │   ├── voice.py             # Voice operations
-│   │   │   ├── livekit_webhooks.py  # LiveKit events
-│   │   │   └── rooms.py             # Room management
-│   │   └── dependencies.py          # Auth & validation
+│   │   │   ├── __init__.py        # Archivo para reconocer el directorio como paquete
+│   │   │   ├── agents.py          # Agentic endpoints
+│   │   │   ├── avatar.py          # Avatar management
+│   │   │   ├── voice.py           # Voice operations
+│   │   │   ├── livekit_webhooks.py # LiveKit events
+│   │   │   └── rooms.py           # Room management
+│   │   └── dependencies.py        # Auth & validation
 │   ├── core/
-│   │   ├── config.py               # Environment config
-│   │   ├── supabase.py             # Supabase client
-│   │   └── livekit_client.py       # LiveKit integration
+│   │   ├── __init__.py            # Archivo para reconocer el directorio como paquete
+│   │   ├── config.py              # Environment config
+│   │   ├── supabase.py            # Supabase client
+│   │   └── livekit_client.py      # LiveKit integration
 │   ├── services/
-│   │   ├── livekit_service.py      # LiveKit room management
-│   │   ├── audio_service.py        # STT processing
-│   │   ├── agentic_service.py      # Multi-agent workflows
-│   │   ├── tts_service.py          # Voice synthesis
-│   │   ├── avatar_service.py       # ROI lipsync rendering
-│   │   ├── stream_publisher.py     # LiveKit publishing
-│   │   └── supabase_service.py     # Database operations
+│   │   ├── __init__.py            # Archivo para reconocer el directorio como paquete
+│   │   ├── livekit_service.py     # LiveKit room management
+│   │   ├── audio_service.py       # STT processing
+│   │   ├── agentic_service.py     # Multi-agent workflows
+│   │   ├── tts_service.py         # Voice synthesis
+│   │   ├── avatar_service.py      # ROI lipsync rendering
+│   │   ├── stream_publisher.py    # LiveKit publishing
+│   │   └── supabase_service.py    # Database operations
+│   ├── agents/
+│   │   ├── __init__.py            # Archivo para reconocer el directorio como paquete
+│   │   ├── conversation_agent.py  # Chat agent
+│   │   ├── automation_agent.py    # Workflow automation
+│   │   └── memory_agent.py        # Context management
