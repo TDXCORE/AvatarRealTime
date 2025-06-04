@@ -1,11 +1,14 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends, HTTPException
+from app.services.livekit_service import handle_webhook_event
+from app.api.dependencies import get_current_user
 
 router = APIRouter()
 
-# Aquí irán los endpoints de webhooks de LiveKit 
-
 @router.post("/webhook")
 async def livekit_webhook(request: Request):
-    data = await request.json()
-    # Aquí se procesarán los eventos de LiveKit
-    return {"received": data} 
+    try:
+        data = await request.json()
+        result = await handle_webhook_event(data)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

@@ -5,7 +5,7 @@ python-dotenv
 supabase
 asyncpg
 redis
-livekit
+livekit-server-sdk>=1.0.0
 langchain
 langgraph
 openai
@@ -17,4 +17,4 @@ docker
 python-jose
 passlib[bcrypt]
 httpx
-python-multipart 
+python-multipart
