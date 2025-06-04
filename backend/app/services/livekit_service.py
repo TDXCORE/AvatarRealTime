@@ -1,0 +1,1 @@
+# Aquí irá la lógica de gestión de salas LiveKit 

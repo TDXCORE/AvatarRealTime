@@ -1,0 +1,1 @@
+# Aquí irá la lógica de lipsync ROI rendering 

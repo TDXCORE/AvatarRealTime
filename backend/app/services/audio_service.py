@@ -1,0 +1,1 @@
+# Aquí irá la lógica de procesamiento de audio (STT) 
