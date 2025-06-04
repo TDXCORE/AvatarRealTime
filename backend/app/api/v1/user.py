@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, Depends, HTTPException
-from app.api.dependencies import get_current_user
-from app.core.supabase import supabase
-from app.services.supabase_service import get_user_by_id, update_user_by_id
+from backend.app.api.dependencies import get_current_user
+from backend.app.core.supabase import supabase
+from backend.app.services.supabase_service import get_user_by_id, update_user_by_id
 
 router = APIRouter()
 
@@ -37,4 +37,4 @@ def update_profile(data: dict = Body(...), user=Depends(get_current_user)):
     db_res = update_user_by_id(user["id"], data)
     if db_res.get("error"):
         raise HTTPException(status_code=400, detail=db_res["error"]["message"])
-    return db_res["data"] 
+    return db_res["data"]

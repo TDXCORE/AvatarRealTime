@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.v1 import agents, avatar, voice, livekit_webhooks, rooms, user
+from backend.app.api.v1 import agents, avatar, voice, livekit_webhooks, rooms, user
 
 app = FastAPI(title="Avatar IA Backend v2.0")
 
@@ -13,4 +13,4 @@ app.include_router(user.router, prefix="/auth", tags=["auth"])
 
 @app.get("/")
 def root():
-    return {"message": "Avatar IA Backend v2.0 running"} 
+    return {"message": "Avatar IA Backend v2.0 running"}

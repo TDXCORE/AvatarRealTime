@@ -1,7 +1,7 @@
 import os
 import jwt
 import time
-from app.core.config import settings
+from backend.app.core.config import settings
 
 LIVEKIT_API_KEY = settings.LIVEKIT_API_KEY
 LIVEKIT_API_SECRET = settings.LIVEKIT_API_SECRET

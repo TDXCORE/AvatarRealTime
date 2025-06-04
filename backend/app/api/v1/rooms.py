@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body, Depends, HTTPException
-from app.api.dependencies import get_current_user
-from app.services.livekit_service import create_livekit_room, generate_participant_token
+from backend.app.api.dependencies import get_current_user
+from backend.app.services.livekit_service import create_livekit_room, generate_participant_token
 
 router = APIRouter()
 

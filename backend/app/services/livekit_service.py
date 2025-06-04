@@ -1,4 +1,4 @@
-from app.core.livekit_client import create_room, create_token
+from backend.app.core.livekit_client import create_room, create_token
 
 async def create_livekit_room(room_name):
     """Crea una sala en LiveKit"""

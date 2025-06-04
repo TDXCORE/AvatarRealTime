@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, Query
-from app.api.dependencies import get_current_user
-from app.services.supabase_service import upload_avatar_video, upload_avatar_voice, list_files, get_public_url
+from backend.app.api.dependencies import get_current_user
+from backend.app.services.supabase_service import upload_avatar_video, upload_avatar_voice, list_files, get_public_url
 
 router = APIRouter()
 
@@ -40,4 +40,4 @@ def get_video_url(file_name: str = Query(...), user=Depends(get_current_user)):
 @router.get("/voz/url")
 def get_voz_url(file_name: str = Query(...), user=Depends(get_current_user)):
     res = get_public_url("voz", str(user["id"]), file_name)
-    return {"url": res.get("publicURL")} 
+    return {"url": res.get("publicURL")}

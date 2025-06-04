@@ -1,6 +1,6 @@
 # Aquí irá la lógica de operaciones de base de datos con Supabase 
 
-from app.core.supabase import supabase
+from backend.app.core.supabase import supabase
 
 BUCKET_AVATAR = "avatar"
 FOLDER_VIDEO = "video"
@@ -29,4 +29,4 @@ def list_files(folder: str, user_id: str):
 
 def get_public_url(folder: str, user_id: str, file_name: str):
     path = f"{folder}/{user_id}/{file_name}"
-    return supabase.storage.from_(BUCKET_AVATAR).get_public_url(path) 
+    return supabase.storage.from_(BUCKET_AVATAR).get_public_url(path)

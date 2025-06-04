@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
-from app.services.livekit_service import handle_webhook_event
-from app.api.dependencies import get_current_user
+from backend.app.services.livekit_service import handle_webhook_event
+from backend.app.api.dependencies import get_current_user
 
 router = APIRouter()
 

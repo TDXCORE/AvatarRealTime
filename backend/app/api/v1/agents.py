@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi import Body, Depends
-from app.api.dependencies import get_current_user
+from backend.app.api.dependencies import get_current_user
 
 router = APIRouter()
 
@@ -9,4 +9,4 @@ router = APIRouter()
 @router.post("/converse")
 def converse_agent(message: str = Body(..., embed=True), user=Depends(get_current_user)):
     # Aquí se integrará LangChain/LangGraph
-    return {"response": f"Agente responde a: {message}", "user": user} 
+    return {"response": f"Agente responde a: {message}", "user": user}
