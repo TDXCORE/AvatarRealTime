@@ -9,12 +9,12 @@ FOLDER_VOZ = "voz"
 
 def upload_avatar_video(user_id: str, file_name: str, file_data: bytes):
     path = f"{FOLDER_VIDEO}/{user_id}/{file_name}"
-    res = supabase.storage.from_(BUCKET_AVATAR).upload(path, file_data, upsert=True)
+    res = supabase.storage.from_(BUCKET_AVATAR).upload(path, file_data)
     return res
 
 def upload_avatar_voice(user_id: str, file_name: str, file_data: bytes):
     path = f"{FOLDER_VOZ}/{user_id}/{file_name}"
-    res = supabase.storage.from_(BUCKET_AVATAR).upload(path, file_data, upsert=True)
+    res = supabase.storage.from_(BUCKET_AVATAR).upload(path, file_data)
     return res
 
 def get_user_by_id(user_id: str):
