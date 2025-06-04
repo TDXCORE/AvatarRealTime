@@ -1,3 +1,4 @@
+# Core dependencies
 fastapi>=0.104
 uvicorn[standard]
 pydantic
@@ -5,16 +6,22 @@ python-dotenv
 supabase
 asyncpg
 redis
-livekit-server-sdk>=1.0.0
-langchain
-langgraph
-openai
-coqui-tts
-faster-whisper
-opencv-python
-mediapipe
-docker
+PyJWT
 python-jose
 passlib[bcrypt]
 httpx
 python-multipart
+
+# LiveKit
+livekit
+
+# AI/ML dependencies (commented for Vercel deployment)
+# Uncomment these for local development with GPU
+# langchain
+# langgraph
+# openai
+# coqui-tts
+# faster-whisper
+# opencv-python
+# mediapipe
+# docker
