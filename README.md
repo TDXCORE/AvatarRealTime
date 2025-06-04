@@ -2,11 +2,11 @@
 
 Backend para la plataforma Avatar IA con integración de LiveKit, Supabase y procesamiento de audio/video en tiempo real.
 
-## Despliegue en Vercel
+## Despliegue en Render
 
 ### 1. Configuración de Variables de Entorno
 
-Configura las siguientes variables de entorno en el panel de Vercel:
+Configura las siguientes variables de entorno en el panel de Render:
 
 ```
 # Supabase
@@ -23,33 +23,40 @@ LIVEKIT_API_SECRET=your-api-secret
 OPENAI_API_KEY=your-openai-key
 ```
 
-### 2. Despliegue
+### 2. Despliegue en Render
 
-1. Conecta tu repositorio de GitHub a Vercel
-2. Configura el directorio raíz como el directorio que contiene el archivo `vercel.json`
-3. Asegúrate de que el framework preset sea "Other"
-4. Configura el comando de build como vacío
-5. Configura el directorio de salida como vacío
-6. Haz clic en "Deploy"
+1. Inicia sesión en tu cuenta de Render (https://dashboard.render.com/)
+2. Haz clic en "New" y selecciona "Web Service"
+3. Conecta tu repositorio de GitHub
+4. Configura el servicio:
+   - **Name**: Un nombre único para tu servicio (ej. AvatarRealTime)
+   - **Region**: Selecciona la región más cercana a tus usuarios
+   - **Branch**: main (o la rama que desees desplegar)
+   - **Root Directory**: Deja en blanco (usará la raíz del repositorio)
+   - **Runtime Environment**: Docker
+   - **Instance Type**: Selecciona según tus necesidades (Free para pruebas)
+5. Haz clic en "Create Web Service"
 
-### 3. Solución de Problemas
+### 3. Configuración Adicional
+
+- **Health Check Path**: /
+- **Auto-Deploy**: Actívalo si deseas que Render despliegue automáticamente cuando haya cambios en el repositorio
+
+### 4. Solución de Problemas
 
 Si encuentras errores durante el despliegue:
 
-1. Verifica los logs de construcción en Vercel
+1. Verifica los logs de construcción en Render
 2. Asegúrate de que todas las variables de entorno estén configuradas correctamente
-3. Verifica que el archivo `vercel.json` esté en la raíz del proyecto
-4. Asegúrate de que los archivos `__init__.py` existan en todos los directorios del proyecto
-5. Comprueba que las rutas de importación en `backend/index.py` sean correctas
+3. Verifica que el Dockerfile esté en la raíz del proyecto
+4. Comprueba que el comando para iniciar la aplicación en el Dockerfile sea correcto
 
-### 4. Cambios Recientes para Solucionar Errores de Despliegue
+### 5. Cambios Realizados para el Despliegue en Render
 
-Se han realizado los siguientes cambios para solucionar errores de despliegue en Vercel:
-
-1. Corregido las rutas de importación en `backend/index.py` y `backend/vercel_app.py`
-2. Añadido archivos `__init__.py` en todos los directorios para que Python los reconozca como paquetes
-3. Simplificado `vercel.json` para usar solo un punto de entrada
-4. Ajustado `requirements.txt` para evitar dependencias problemáticas en Vercel
+1. Creado Dockerfile en la raíz del proyecto
+2. Añadido .dockerignore para optimizar la construcción
+3. Configurado el comando de inicio para usar la ruta correcta de importación
+4. Añadido archivos `__init__.py` en todos los directorios para que Python los reconozca como paquetes
 
 ## Desarrollo Local
 
@@ -62,9 +69,11 @@ Para ejecutar el proyecto localmente:
 ## Estructura del Proyecto
 
 ```
+Dockerfile                         # Configuración para Docker/Render
+.dockerignore                      # Archivos a ignorar en la construcción de Docker
 backend/
 ├── __init__.py                    # Archivo para reconocer el directorio como paquete
-├── index.py                       # Punto de entrada para Vercel
+├── index.py                       # Punto de entrada alternativo
 ├── vercel_app.py                  # Punto de entrada alternativo
 ├── app/
 │   ├── __init__.py                # Archivo para reconocer el directorio como paquete
