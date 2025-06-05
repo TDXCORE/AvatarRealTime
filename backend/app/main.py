@@ -13,10 +13,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Manejador explícito para solicitudes OPTIONS
-@app.options("/{full_path:path}")
-async def options_handler(full_path: str):
-    return {"detail": "OK"}
 
 app.include_router(agents.router, prefix="/agents", tags=["agents"])
 app.include_router(avatar.router, prefix="/avatar", tags=["avatar"])
