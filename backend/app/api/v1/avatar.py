@@ -11,17 +11,25 @@ def upload_avatar_video_endpoint(file: UploadFile = File(...)):
     file_data = file.file.read()
     # Aquí debes decidir cómo manejar el user_id si ya no hay autenticación. Por ahora, lo dejo como 'anonymous' o similar.
     res = upload_avatar_video("anonymous", file.filename, file_data)
-    if res.get("error"):
-        raise HTTPException(status_code=500, detail=res["error"])
-    return {"filename": file.filename, "status": "video almacenado", "path": res.get("path")}
+    if hasattr(res, "error") and res.error:
+        raise HTTPException(status_code=500, detail=res.error)
+    return {
+        "filename": file.filename,
+        "status": "video almacenado",
+        "result": str(res)
+    }
 
 @router.post("/voice")
 def upload_avatar_voice_endpoint(file: UploadFile = File(...)):
     file_data = file.file.read()
     res = upload_avatar_voice("anonymous", file.filename, file_data)
-    if res.get("error"):
-        raise HTTPException(status_code=500, detail=res["error"])
-    return {"filename": file.filename, "status": "voz almacenada", "path": res.get("path")}
+    if hasattr(res, "error") and res.error:
+        raise HTTPException(status_code=500, detail=res.error)
+    return {
+        "filename": file.filename,
+        "status": "voz almacenada",
+        "result": str(res)
+    }
 
 @router.get("/video/list")
 def list_avatar_videos():
