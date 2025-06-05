@@ -7,11 +7,16 @@ app = FastAPI(title="Avatar IA Backend v2.0")
 # Configuración CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://virtual-voice-hub.onrender.com"],  # Origen específico en lugar de "*"
-    allow_credentials=True,
+    allow_origins=["*"],  # Permitir todos los orígenes temporalmente
+    allow_credentials=False,  # Debe ser False cuando allow_origins=["*"]
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Manejador explícito para solicitudes OPTIONS
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+    return {"detail": "OK"}
 
 app.include_router(agents.router, prefix="/agents", tags=["agents"])
 app.include_router(avatar.router, prefix="/avatar", tags=["avatar"])
