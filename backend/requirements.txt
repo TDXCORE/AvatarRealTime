@@ -31,6 +31,6 @@ requests
 openai
 mediapipe
 opencv-python
-whisper
+openai-whisper
 numpy
 torch
