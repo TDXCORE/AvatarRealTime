@@ -25,3 +25,12 @@ livekit
 # opencv-python
 # mediapipe
 # docker
+
+TTS
+requests
+openai
+mediapipe
+opencv-python
+whisper
+numpy
+torch
