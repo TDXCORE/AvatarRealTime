@@ -1,1 +1,1 @@
-# Aquí irá la lógica de publicación de streams en LiveKit 
+# Lógica de publicación de streams en D-ID (placeholder) 

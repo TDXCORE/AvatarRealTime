@@ -17,23 +17,15 @@ else:
 # Valores por defecto para desarrollo local
 DEFAULT_SUPABASE_URL = "https://example.supabase.co"
 DEFAULT_SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example"
-DEFAULT_LIVEKIT_URL = "wss://example.livekit.cloud"
-DEFAULT_LIVEKIT_API_KEY = "APIKey"
-DEFAULT_LIVEKIT_API_SECRET = "APISecret"
 
 class Settings:
     # Usar valores por defecto solo en desarrollo
     is_development = os.getenv("ENVIRONMENT", "development") == "development"
     
     # Supabase
-    SUPABASE_URL: str = os.getenv("SUPABASE_URL", DEFAULT_SUPABASE_URL if is_development else "")
-    SUPABASE_SERVICE_ROLE: str = os.getenv("SUPABASE_SERVICE_ROLE", DEFAULT_SUPABASE_KEY if is_development else "")
-    SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", DEFAULT_SUPABASE_KEY if is_development else "")
-    
-    # LiveKit
-    LIVEKIT_URL: str = os.getenv("LIVEKIT_URL", DEFAULT_LIVEKIT_URL if is_development else "")
-    LIVEKIT_API_KEY: str = os.getenv("LIVEKIT_API_KEY", DEFAULT_LIVEKIT_API_KEY if is_development else "")
-    LIVEKIT_API_SECRET: str = os.getenv("LIVEKIT_API_SECRET", DEFAULT_LIVEKIT_API_SECRET if is_development else "")
+    SUPABASE_URL: str = os.getenv("SUPABASE_URL", "")
+    SUPABASE_SERVICE_ROLE: str = os.getenv("SUPABASE_SERVICE_ROLE", "")
+    SUPABASE_ANON_KEY: str = os.getenv("SUPABASE_ANON_KEY", "")
     
     # Otros
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
@@ -47,6 +39,5 @@ class Settings:
             logger.info(f"SUPABASE_SERVICE_ROLE: {'*' * (len(self.SUPABASE_SERVICE_ROLE) - 4) + self.SUPABASE_SERVICE_ROLE[-4:]}")
         if self.SUPABASE_ANON_KEY:
             logger.info(f"SUPABASE_ANON_KEY: {'*' * (len(self.SUPABASE_ANON_KEY) - 4) + self.SUPABASE_ANON_KEY[-4:]}")
-        logger.info(f"LIVEKIT_URL: {self.LIVEKIT_URL}")
 
 settings = Settings()

@@ -6,7 +6,7 @@ Backend para la aplicación Avatar IA, que proporciona servicios de avatares vir
 
 - API RESTful con FastAPI
 - Integración con Supabase para autenticación y almacenamiento
-- Integración con LiveKit para streaming de video y audio en tiempo real
+- Integración con D-ID para streaming de video y audio en tiempo real
 - Agentes de IA para conversación y automatización
 - Síntesis de voz para avatares
 
@@ -30,7 +30,7 @@ backend/
 
 - Python 3.9+
 - Cuenta en Supabase
-- Cuenta en LiveKit (opcional para streaming en tiempo real)
+- Cuenta en D-ID (para streaming en tiempo real)
 - Cuenta en OpenAI (opcional para funcionalidades de IA)
 
 ## Instalación y Ejecución Local
@@ -104,10 +104,8 @@ backend/
    SUPABASE_URL=https://your-project.supabase.co
    SUPABASE_SERVICE_ROLE=your-service-role-key
    SUPABASE_ANON_KEY=your-anon-key
-   LIVEKIT_URL=wss://your-project.livekit.cloud
-   LIVEKIT_API_KEY=your-api-key
-   LIVEKIT_API_SECRET=your-api-secret
-   OPENAI_API_KEY=your-openai-key (opcional)
+   D_ID_URL=https://your-project.d-id.com
+   D_ID_API_KEY=your-d-id-key
    ENVIRONMENT=production
    ```
 
@@ -120,9 +118,7 @@ backend/
 - `/agents`: Endpoints relacionados con los agentes de IA
 - `/avatar`: Endpoints para gestionar avatares (video, voz)
 - `/voice`: Endpoints para síntesis de voz
-- `/livekit`: Webhooks de LiveKit
-- `/rooms`: Gestión de salas de LiveKit
-- `/user`: Autenticación y gestión de usuarios
+- `/rooms`: Gestión de salas
 
 ### Modo de Desarrollo
 
@@ -131,3 +127,6 @@ El proyecto incluye un modo de desarrollo que simula servicios externos cuando n
 ## Licencia
 
 [MIT](LICENSE)
+
+# Notas
+Este backend utiliza D-ID para streaming y lipsync en tiempo real. La integración con LiveKit ha sido eliminada.

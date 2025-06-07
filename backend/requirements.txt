@@ -12,25 +12,22 @@ passlib[bcrypt]
 httpx
 python-multipart
 
-# LiveKit
-livekit
-
-# AI/ML dependencies (commented for Vercel deployment)
-# Uncomment these for local development with GPU
-# langchain
-# langgraph
-# openai
-# coqui-tts
-# faster-whisper
-# opencv-python
-# mediapipe
-# docker
-
-TTS
-requests
+# AI/ML dependencies
+langchain
+langgraph
 openai
-mediapipe
+coqui-tts
+faster-whisper
 opencv-python
-openai-whisper
+mediapipe
+
+# D-ID Integration
+requests>=2.31.0
+websockets
+python-socketio
+
+# Audio Processing
+sounddevice
 numpy
-torch
+scipy
+librosa

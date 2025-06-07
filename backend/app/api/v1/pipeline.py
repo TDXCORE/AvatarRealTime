@@ -10,7 +10,7 @@ router = APIRouter()
 SUPABASE_VIDEO_URL = "https://rmhgbdxpoczxowtpnqct.supabase.co/storage/v1/object/public/avatar/video/anonymous/base_video.mp4"
 SPEAKER_EMBEDDING_PATH = "/data/voice/anonymous/embedding.wav"  # Ajusta esta ruta según donde guardes el embedding/modelo de voz
 
-# Este endpoint es solo para pruebas directas (no LiveKit)
+# Este endpoint es solo para pruebas directas
 @router.post("/test")
 def pipeline_test(audio: UploadFile = File(...)):
     # Guardar archivo temporal de audio
@@ -28,8 +28,4 @@ def pipeline_test(audio: UploadFile = File(...)):
     # 4. Libsync (descarga el video base desde Supabase y devuelve keypoints)
     lipsync_keypoints = lipsync_video(SUPABASE_VIDEO_URL, tts_path, tts_path + ".mp4")
 
-    return {"text": text, "llm_response": response, "tts_audio": tts_path, "lipsync_keypoints": lipsync_keypoints}
-
-# Aquí iría la integración con LiveKit para recibir y enviar streams en tiempo real.
-# Esto requiere un worker o proceso asíncrono que se conecte como participante a la sala,
-# reciba el audio, ejecute el pipeline y publique el resultado como un nuevo track o DataTrack. 
+    return {"text": text, "llm_response": response, "tts_audio": tts_path, "lipsync_keypoints": lipsync_keypoints} 
