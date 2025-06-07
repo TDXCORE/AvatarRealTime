@@ -4,7 +4,7 @@ from faster_whisper import WhisperModel
 import numpy as np
 import tempfile
 
-model = WhisperModel("base")
+model = WhisperModel("tiny")
 
 def transcribe_audio(audio_path: str) -> str:
     segments, info = model.transcribe(audio_path)
