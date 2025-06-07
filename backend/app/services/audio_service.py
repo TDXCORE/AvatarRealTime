@@ -1,14 +1,14 @@
 # Aquí irá la lógica de procesamiento de audio (STT) 
 
-import whisper
+from faster_whisper import WhisperModel
 import numpy as np
 import tempfile
 
-model = whisper.load_model("base")
+model = WhisperModel("base")
 
 def transcribe_audio(audio_path: str) -> str:
-    result = model.transcribe(audio_path)
-    return result["text"]
+    segments, info = model.transcribe(audio_path)
+    return " ".join([segment.text for segment in segments])
 
 def transcribe_audio_bytes(audio_bytes: bytes) -> str:
     # Guarda los bytes en un archivo temporal y transcribe
